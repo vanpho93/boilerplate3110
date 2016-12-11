@@ -5,8 +5,9 @@ var Weather = React.createClass({
   getInitialState(){
     return {city: 'Hanoi', temp: 30}
   },
-  changeCity(cityName){
+  changeCity(cityName, temp){
     this.state.city = cityName;
+    this.state.temp = temp;
     this.setState(this.state);
   },
   render(){

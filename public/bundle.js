@@ -21472,8 +21472,9 @@
 	  getInitialState: function getInitialState() {
 	    return { city: 'Hanoi', temp: 30 };
 	  },
-	  changeCity: function changeCity(cityName) {
+	  changeCity: function changeCity(cityName, temp) {
 	    this.state.city = cityName;
+	    this.state.temp = temp;
 	    this.setState(this.state);
 	  },
 	  render: function render() {
@@ -21500,28 +21501,33 @@
 /* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
 
 	var WeatherForm = React.createClass({
-	  displayName: "WeatherForm",
+	  displayName: 'WeatherForm',
 	  change: function change() {
+	    var _this = this;
+
 	    var cityName = this.refs.txtCity.value;
+	    var url = 'http://api.openweathermap.org/data/2.5/weather?appid=6793b567037402fc85cc563ee05470d2&units=metric&q=' + cityName;
 	    this.refs.txtCity.value = "";
-	    this.props.xuly(cityName);
+	    $.get(url, function (data) {
+	      _this.props.xuly(cityName, data.main.temp);
+	    });
 	  },
 	  render: function render() {
 	    return React.createElement(
-	      "div",
+	      'div',
 	      null,
-	      React.createElement("input", { type: "text", placeholder: "Enter city name", ref: "txtCity" }),
-	      React.createElement("br", null),
-	      React.createElement("br", null),
+	      React.createElement('input', { type: 'text', placeholder: 'Enter city name', ref: 'txtCity' }),
+	      React.createElement('br', null),
+	      React.createElement('br', null),
 	      React.createElement(
-	        "button",
+	        'button',
 	        { onClick: this.change },
-	        "Get weather"
+	        'Get weather'
 	      )
 	    );
 	  }
