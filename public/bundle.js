@@ -21470,7 +21470,7 @@
 	var Weather = React.createClass({
 	  displayName: 'Weather',
 	  getInitialState: function getInitialState() {
-	    return { city: 'Hanoi', temp: 30 };
+	    return { city: '', temp: 0 };
 	  },
 	  changeCity: function changeCity(cityName, temp) {
 	    this.state.city = cityName;
@@ -21488,7 +21488,7 @@
 	      React.createElement(WeatherForm, { xuly: this.changeCity }),
 	      React.createElement(
 	        WeatherMessage,
-	        null,
+	        { isLoading: this.state.isLoading },
 	        city + ' is now ' + temp
 	      )
 	    );
@@ -21510,10 +21510,12 @@
 	  change: function change() {
 	    var _this = this;
 
+	    that.setState({ isLoading: true });
 	    var cityName = this.refs.txtCity.value;
 	    var url = 'http://api.openweathermap.org/data/2.5/weather?appid=6793b567037402fc85cc563ee05470d2&units=metric&q=' + cityName;
 	    this.refs.txtCity.value = "";
 	    $.get(url, function (data) {
+	      that.setState({ isLoading: false });
 	      _this.props.xuly(cityName, data.main.temp);
 	    });
 	  },
@@ -21545,12 +21547,24 @@
 
 	var WeatherMessage = React.createClass({
 	  displayName: 'WeatherMessage',
+	  getInitialState: function getInitialState() {
+	    that = this;
+	    return { isLoading: false };
+	  },
 	  render: function render() {
-	    return React.createElement(
+	    var children = this.props.children;
+
+	    var xhtml = children.length < 10 ? React.createElement('p', null) : React.createElement(
 	      'p',
 	      null,
-	      this.props.children
+	      children
 	    );
+	    var xhtml2 = this.state.isLoading ? React.createElement(
+	      'p',
+	      null,
+	      'Loading...'
+	    ) : xhtml;
+	    return xhtml2;
 	  }
 	});
 

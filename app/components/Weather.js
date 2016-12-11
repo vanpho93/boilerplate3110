@@ -3,7 +3,7 @@ var WeatherForm = require('./WeatherForm.js');
 var WeatherMessage = require('./WeatherMessage.js');
 var Weather = React.createClass({
   getInitialState(){
-    return {city: 'Hanoi', temp: 30}
+    return {city: '', temp: 0}
   },
   changeCity(cityName, temp){
     this.state.city = cityName;
@@ -15,7 +15,7 @@ var Weather = React.createClass({
     return (
       <div>
         <WeatherForm xuly={this.changeCity}/>
-        <WeatherMessage>{city + ' is now ' + temp}</WeatherMessage>
+        <WeatherMessage isLoading={this.state.isLoading}>{city + ' is now ' + temp}</WeatherMessage>
       </div>
     )
   }
