@@ -21512,15 +21512,27 @@
 	var WeatherForm = React.createClass({
 	  displayName: 'WeatherForm',
 	  change: function change() {
-	    var _this = this;
-
 	    this.props.xulyLoading();
 	    var cityName = this.refs.txtCity.value;
 	    var url = 'http://api.openweathermap.org/data/2.5/weather?appid=6793b567037402fc85cc563ee05470d2&units=metric&q=' + cityName;
 	    this.refs.txtCity.value = "";
-	    $.get(url, function (data) {
-	      _this.props.xulyLoading();
-	      _this.props.xuly(cityName, data.main.temp);
+	    // $.get(url, data => {
+	    //   console.log(data);
+	    //   this.props.xulyLoading();
+	    //   this.props.xuly(cityName, data.main.temp);
+	    // });
+	    var that = this;
+	    $.ajax({
+	      type: "GET",
+	      url: url,
+	      success: function success(data) {
+	        that.props.xulyLoading();
+	        that.props.xuly(cityName, data.main.temp);
+	      },
+	      error: function error(a) {
+	        that.props.xulyLoading();
+	        alert(a.responseJSON.message);
+	      }
 	    });
 	  },
 	  render: function render() {
