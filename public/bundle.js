@@ -26580,13 +26580,32 @@
 
 	var React = __webpack_require__(1);
 
+	var _require = __webpack_require__(181),
+	    Link = _require.Link,
+	    IndexLink = _require.IndexLink;
+
 	var Nav = React.createClass({
 	  displayName: 'Nav',
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
-	      'Nav Component'
+	      'Nav Component',
+	      React.createElement(
+	        IndexLink,
+	        { to: '/', activeClassName: 'active', activeStyle: { fontWeight: "bold" } },
+	        'Get Weather'
+	      ),
+	      React.createElement(
+	        Link,
+	        { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: "bold" } },
+	        'About'
+	      ),
+	      React.createElement(
+	        Link,
+	        { to: '/examples', activeClassName: 'active', activeStyle: { fontWeight: "bold" } },
+	        'Examples'
+	      )
 	    );
 	  }
 	});
