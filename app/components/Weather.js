@@ -1,6 +1,6 @@
 var React = require('react');
-var WeatherForm = require('./WeatherForm.js');
-var WeatherMessage = require('./WeatherMessage.js');
+var WeatherForm = require('WeatherForm');
+var WeatherMessage = require('WeatherMessage');
 var Weather = React.createClass({
   getInitialState(){
     return {isLoading: false, city: '', temp: 0}
