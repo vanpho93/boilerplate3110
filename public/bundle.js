@@ -49,6 +49,9 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var Weather = __webpack_require__(178);
+	var About = __webpack_require__(236);
+	var Examples = __webpack_require__(237);
+	var Main = __webpack_require__(238);
 
 	var _require = __webpack_require__(181),
 	    Router = _require.Router,
@@ -56,7 +59,17 @@
 	    hashHistory = _require.hashHistory,
 	    IndexRoute = _require.IndexRoute;
 
-	ReactDOM.render(React.createElement(Weather, null), document.getElementById('root'));
+	ReactDOM.render(React.createElement(
+	  Router,
+	  { history: hashHistory },
+	  React.createElement(
+	    Route,
+	    { path: '/', component: Main },
+	    React.createElement(IndexRoute, { component: Weather }),
+	    React.createElement(Route, { path: 'about', component: About }),
+	    React.createElement(Route, { path: 'examples', component: Examples })
+	  )
+	), document.getElementById('root'));
 
 /***/ },
 /* 1 */
@@ -26493,6 +26506,92 @@
 	  });
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var About = React.createClass({
+	  displayName: 'About',
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      'About Component'
+	    );
+	  }
+	});
+
+	module.exports = About;
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Examples = React.createClass({
+	  displayName: 'Examples',
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      'Examples Component'
+	    );
+	  }
+	});
+
+	module.exports = Examples;
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Nav = __webpack_require__(239);
+	var Main = React.createClass({
+	  displayName: 'Main',
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      'Main Component',
+	      React.createElement(Nav, null),
+	      this.props.children
+	    );
+	  }
+	});
+
+	module.exports = Main;
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Nav = React.createClass({
+	  displayName: 'Nav',
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      'Nav Component'
+	    );
+	  }
+	});
+
+	module.exports = Nav;
 
 /***/ }
 /******/ ]);
