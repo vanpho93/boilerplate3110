@@ -1,6 +1,7 @@
-var React = require('react');
-var {Link, IndexLink} = require('react-router');
-var Nav = React.createClass({
+import React, {Component} from 'react'
+import {Link, IndexLink} from 'react-router'
+
+class Nav extends Component{
   render(){
     return (
       <div>
@@ -11,6 +12,6 @@ var Nav = React.createClass({
       </div>
     )
   }
-});
+}
 
 module.exports = Nav;
