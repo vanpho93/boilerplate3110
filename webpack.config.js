@@ -1,9 +1,20 @@
+var webpack = require('webpack');
 module.exports = {
-  entry: './app/app.js',
+  entry: [
+    'script!jquery/dist/jquery.min.js',
+    'script!foundation-sites/dist/foundation.min.js',
+    './app/app.js'
+  ],
   output: {
     path: __dirname,
     filename: './public/bundle.js'
   },
+  externals:{
+    jquery: 'jQuery'
+  },
+  plugins:[
+    new webpack.ProvidePlugin({"$":"jquery"})
+  ],
   resolve:{
     root: __dirname,
     alias: {
@@ -13,7 +24,8 @@ module.exports = {
       About: 'app/components/About.js',
       Weather: 'app/components/Weather.js',
       WeatherForm: 'app/components/WeatherForm.js',
-      WeatherMessage: 'app/components/WeatherMessage.js'
+      WeatherMessage: 'app/components/WeatherMessage.js',
+      AddBox: 'app/components/AddBox.js'
     }
   },
   module: {

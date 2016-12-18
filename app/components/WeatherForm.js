@@ -6,11 +6,6 @@ var WeatherForm = React.createClass({
     var cityName = this.refs.txtCity.value;
     var url = 'http://api.openweathermap.org/data/2.5/weather?appid=6793b567037402fc85cc563ee05470d2&units=metric&q='+cityName;
     this.refs.txtCity.value = "";
-      // $.get(url, data => {
-      //   console.log(data);
-      //   this.props.xulyLoading();
-      //   this.props.xuly(cityName, data.main.temp);
-      // });
       var that = this;
       $.ajax({
         type: "GET",
@@ -30,7 +25,7 @@ var WeatherForm = React.createClass({
       <div>
         <input type="text" placeholder="Enter city name" ref="txtCity"/>
         <br/><br/>
-        <button onClick={this.change}>Get weather</button>
+        <button className="button" onClick={this.change}>Get weather</button>
       </div>
     )
   }

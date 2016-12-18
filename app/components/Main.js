@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import Nav from 'Nav';
+import AddBox from 'AddBox';
 class Main extends Component{
   render(){
     return (
       <div>
-        Main Component
+        <AddBox incr={3}/>
+        <br/>
         <Nav/>
         {this.props.children}
       </div>
